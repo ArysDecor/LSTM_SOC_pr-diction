@@ -44,12 +44,12 @@ Une cellule d'installation automatique des dépendances est incluse au début de
 ### MLP (Multi-Layer Perceptron)
 *   **Entrée** : Fenêtre de temps fixe, aplatie en un vecteur 1D.
 *   **Architecture** : Couches Denses (Fully Connected) avec activation ReLU et Dropout pour la régularisation.
-*   **Sortie** : Activation **Linéaire** pour une prédiction précise du SOC (permet d'atteindre les bornes 0% et 100% sans saturation).
+*   **Sortie** : Activation **Sigmoïde** pour garantir une estimation strictement bornée entre 0 et 1 (SOC).
 
 ### LSTM (Long Short-Term Memory)
 *   **Entrée** : Séquence temporelle 3D (Samples, TimeSteps, Features).
 *   **Architecture** : Couches LSTM permettant de capturer les dépendances temporelles à long terme, suivies de couches Denses.
-*   **Sortie** : Activation **Linéaire**.
+*   **Sortie** : Activation **Sigmoïde**.
 
 ## 📈 Résultats et Évaluation
 
@@ -61,7 +61,7 @@ Les notebooks génèrent automatiquement :
     *   **RMSE** (Root Mean Squared Error)
     *   **R²** (Coefficient de détermination)
 
-L'utilisation de l'activation linéaire en sortie permet une meilleure fidélité aux valeurs extrêmes du SOC par rapport à une activation sigmoïde classique.
+L'utilisation de l'activation **Sigmoïde** en sortie permet de respecter les contraintes physiques du SOC (0% à 100%). L'entraînement sur 50 époques assure une bonne convergence.
 
 ## 🛠 Auteur
 Projet réalisé dans le cadre de l'estimation de SOC par IA.
